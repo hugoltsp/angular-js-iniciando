@@ -48,7 +48,7 @@
 	 		</div>
 	 		
 	 		<div>
-	 			<button class="btn btn-default" ng-click="adicionarContato()">Add Contato</button>
+	 			<button class="btn btn-default" ng-click="adicionarContato(nome, numero)">Add Contato</button>
 			</div>
 		</div>
 	</div>
@@ -64,10 +64,10 @@
 							{nome:"AAA", numero:"123"}
 				];
 
-				$scope.adicionarContato = function(){
+				$scope.adicionarContato = function(nome, numero){
 					$scope.contatos.push({
-						nome: $scope.nome, 
-						numero: $scope.numero 
+						nome: nome, 
+						numero: numero 
 					});
 				}
 			});
