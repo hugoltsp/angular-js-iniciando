@@ -13,6 +13,9 @@
 		.table{
 			margin-top: 20px;
 		}
+		.form-control{
+			margin-bottom: 5px;
+		}
 	</style>
 	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
 </head>
@@ -36,6 +39,17 @@
 	 			</tr>
 
 			</table>
+		
+			<hr />
+			
+			<div>
+	 			<input class="form-control" type="text" ng-model="nome">
+	 			<input class="form-control" type="text" ng-model="numero">
+	 		</div>
+	 		
+	 		<div>
+	 			<button class="btn btn-default" ng-click="adicionarContato()">Add Contato</button>
+			</div>
 		</div>
 	</div>
 </body>
@@ -49,6 +63,13 @@
 							{nome:"Maria", numero:"88888888"},
 							{nome:"AAA", numero:"123"}
 				];
+
+				$scope.adicionarContato = function(){
+					$scope.contatos.push({
+						nome: $scope.nome, 
+						numero: $scope.numero 
+					});
+				}
 			});
 		</script>
 	</footer>
