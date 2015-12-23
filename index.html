@@ -43,12 +43,12 @@
 			<hr />
 			
 			<div>
-	 			<input class="form-control" type="text" ng-model="nome">
-	 			<input class="form-control" type="text" ng-model="numero">
+	 			<input class="form-control" type="text" ng-model="contato.nome">
+	 			<input class="form-control" type="text" ng-model="contato.numero">
 	 		</div>
 	 		
 	 		<div>
-	 			<button class="btn btn-default" ng-click="adicionarContato(nome, numero)">Add Contato</button>
+	 			<button class="btn btn-default" ng-click="adicionarContato(contato)">Add Contato</button>
 			</div>
 		</div>
 	</div>
@@ -58,17 +58,15 @@
 			var mod = angular.module("listaTelefonica",[]);
 			mod.controller("listaTelefonicaController", function($scope){
 				$scope.app="Lista Telefonica";
+
 				$scope.contatos=[
 							{nome:"João", numero:"12345678"},
 							{nome:"Maria", numero:"88888888"},
 							{nome:"AAA", numero:"123"}
 				];
 
-				$scope.adicionarContato = function(nome, numero){
-					$scope.contatos.push({
-						nome: nome, 
-						numero: numero 
-					});
+				$scope.adicionarContato = function(contato){
+					$scope.contatos.push(angular.copy(contato));
 				}
 			});
 		</script>
