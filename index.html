@@ -15,9 +15,24 @@
 </head>
 <body ng-controller="listaTelefonicaController">
 	<div class="jumbotron">
-		<h2 ng-bind="app">
+		<div>
+			<h2 ng-bind="app" />
+		</div>
+		
+		<div>
+			<table class="table table-striped">
+				<tr>
+	 				<th>Nome</th>
+					<th>Numero</th>
+	 			</tr>
+	 			
+	 			<tr ng-repeat="c in contatos">
+	 				<td ng-bind="c.nome" />
+	 				<td ng-bind="c.numero" />
+	 			</tr>
 
-		</h2>
+			</table>
+		</div>
 	</div>
 </body>
 	<footer>
@@ -25,6 +40,11 @@
 			var mod = angular.module("listaTelefonica",[]);
 			mod.controller("listaTelefonicaController", function($scope){
 				$scope.app="Lista Telefonica";
+				$scope.contatos=[
+							{nome:"João", numero:"12345678"},
+							{nome:"Maria", numero:"88888888"},
+							{nome:"AAA", numero:"123"}
+				];
 			});
 		</script>
 	</footer>
