@@ -23,37 +23,44 @@
 </head>
 <body ng-controller="listaTelefonicaController">
 	<div class="jumbotron">
+
 		<div>
-			<h2 ng-bind="app" />
+			<h2 ng-model="app"/>
 		</div>
-		
+
 		<div>
 			<table class="table table-striped">
-			
+				
 				<tr>
 	 				<th>Nome</th>
 					<th>Numero</th>
+					<th>Operadora</th>
 	 			</tr>
-	 			
+		 			
 	 			<tr ng-repeat="c in contatos">
 	 				<td ng-bind="c.nome" />
 	 				<td ng-bind="c.numero" />
+	 				<td ng-bind="c.operadora.nome" />
 	 			</tr>
 
 			</table>
+ 		</div>
 		
-			<hr />
-			
-			<div>
-	 			<input class="form-control" type="text" ng-model="contato.nome">
-	 			<input class="form-control" type="text" ng-model="contato.numero">
-	 		</div>
-	 		
-	 		<div>
-	 			<button class="btn btn-default" ng-click="adicionarContato(contato)">Add Contato</button>
-			</div>
-		</div>
-	</div>
+		<hr />
+		
+		<div>
+ 			<input class="form-control" type="text" ng-model="contato.nome">
+ 			<input class="form-control" type="text" ng-model="contato.numero">
+
+ 			<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+ 				<option value="">Selecione uma operadora</option>
+ 			</select>
+ 		</div>
+
+ 		<div>
+  			<button class="btn btn-default" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.numero">Add Contato</button>
+  		</div>
+ 	</div>
 </body>
 	<footer>
 		<script type="text/javascript">
@@ -67,8 +74,16 @@
 							{nome:"AAA", numero:"123"}
 				];
 
+				$scope.operadoras=[
+						{nome:"Oi", codigo:1},						
+						{nome:"Claro", codigo:2},
+						{nome:"Tim", codigo:3},
+						{nome:"Vivo", codigo:4},
+				];
+
 				$scope.adicionarContato = function(contato){
 					$scope.contatos.push(angular.copy(contato));
+					delete $scope.contato;
 				}
 			});
 		</script>
